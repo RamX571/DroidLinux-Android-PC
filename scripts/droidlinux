@@ -20,6 +20,9 @@ case "$COMMAND" in
     status)
         bash "${SCRIPT_DIR}/status.sh"
         ;;
+    apps)
+        bash "${ROOT_DIR}/install/apps.sh"
+        ;;
     update)
         bash "${SCRIPT_DIR}/update.sh"
         ;;
@@ -49,6 +52,7 @@ case "$COMMAND" in
         echo "  stop         Stop the running desktop session"
         echo "  restart      Restart the desktop session"
         echo "  status       Show system and session status"
+        echo "  apps         Manage and view installed applications"
         echo "  update       Update DroidLinux scripts"
         echo "  repair       Repair configuration or broken packages"
         echo "  diagnostics  Collect diagnostic information"
