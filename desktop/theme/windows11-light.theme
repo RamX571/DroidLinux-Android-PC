@@ -1,0 +1,8 @@
+[Desktop Theme]
+Name=Windows11-Light
+Comment=Windows 11 Inspired Light Theme for DroidLinux
+Encoding=UTF-8
+
+[XFWM4]
+TitleFont=Sans Bold 9
+ButtonLayout=C|HMC
