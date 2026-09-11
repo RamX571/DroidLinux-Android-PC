@@ -4,31 +4,39 @@
 
 A fast, lightweight, PC-like Linux desktop environment for Android using Termux, Ubuntu userspace, and Termux:X11.
 
-## Key Features
-- **Fast & Lightweight:** Built on XFCE4 desktop with non-essential visual effects turned off for low RAM/CPU footprint.
-- **Windows-11-Inspired UI:** Light, modern taskbar and layout.
-- **Modular Architecture:** Clean separation between system check, userspace setup, desktop configuration, application installer, and management tools.
-- **Management CLI:** Easy controls via `droidlinux start`, `stop`, `status`, `repair`, `diagnostics`, and more.
-- **Waydroid Assessment:** Optional assessment of kernel binder compatibility.
+## One-Command Installation
 
-## Installation
+On a fresh Termux installation, run:
 
-```bash
-git clone https://github.com/RamX571/DroidLinux-Android-PC.git
-cd DroidLinux-Android-PC
-bash install/install.sh
-```
+curl -fsSL https://raw.githubusercontent.com/RamX571/DroidLinux-Android-PC/main/install.sh | bash
 
-## Management CLI Commands
+The installer automatically bootstraps all missing dependencies (git, curl, proot-distro, x11-repo, termux-x11-nightly), sets up Ubuntu userspace, installs the lightweight XFCE4 desktop, and configures the management CLI.
 
-```bash
-bash scripts/droidlinux start        # Launch desktop
-bash scripts/droidlinux stop         # Stop desktop
-bash scripts/droidlinux status       # Check status
-bash scripts/droidlinux repair       # Auto-repair environment
-bash scripts/droidlinux diagnostics  # Run diagnostics
-bash scripts/droidlinux benchmark    # Run performance benchmark
-```
+## Management CLI
+
+After installation, use droidlinux from anywhere in Termux:
+
+droidlinux start        # Start Termux:X11 display server & XFCE desktop
+droidlinux stop         # Safely stop desktop session
+droidlinux restart      # Restart desktop session
+droidlinux status       # View system, RAM, and session status
+droidlinux repair       # Auto-repair environment and missing configs
+droidlinux diagnostics  # Run full system diagnostics
+droidlinux benchmark    # Run storage and CPU performance benchmarks
+droidlinux version      # Display version
+
+## Requirements
+- OS: Android 7.0+
+- Environment: Termux (F-Droid release recommended) + Termux:X11 Companion Android App
+- Architecture: ARM64 (aarch64) / ARM32 / x86_64
+- RAM: Minimum 2 GB (4 GB+ recommended)
+- Free Storage: Minimum 3 GB free
+
+## Documentation
+- Installation Guide: docs/installation.md
+- CLI Command Reference: docs/commands.md
+- Troubleshooting: docs/troubleshooting.md
+- Performance Tuning: docs/performance.md
 
 ## License
-MIT License - see [LICENSE](LICENSE) file.
+MIT License - see LICENSE file.

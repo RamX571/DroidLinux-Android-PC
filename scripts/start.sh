@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# ==============================================================================
+# DroidLinux Session Launch Script
+# ==============================================================================
+
 set -Eeuo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -37,6 +41,7 @@ if command -v proot-distro >/dev/null 2>&1; then
     SESSION_PID=$!
     echo $SESSION_PID > "${PID_FILE}"
     echo "[DroidLinux] Desktop session launched (PID: ${SESSION_PID})."
+    echo "🖥️ Open Termux:X11 app on Android to view desktop."
 else
     echo "[DroidLinux] proot-distro not found. Please run installation first."
 fi

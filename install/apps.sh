@@ -13,7 +13,7 @@ log() {
 }
 
 install_firefox() {
-    log "Installing Firefox..."
+    log "Installing Firefox browser..."
     if command -v proot-distro >/dev/null 2>&1; then
         proot-distro login ubuntu -- bash -c "
             export DEBIAN_FRONTEND=noninteractive
@@ -39,19 +39,31 @@ install_vscode() {
     if command -v proot-distro >/dev/null 2>&1; then
         proot-distro login ubuntu -- bash -c "
             export DEBIAN_FRONTEND=noninteractive
-            arch=$(uname -m)
-            if [ "$arch" = "aarch64" ] || [ "$arch" = "x86_64" ]; then
+            arch=\$(uname -m)
+            if [ \"\$arch\" = \"aarch64\" ] || [ \"\$arch\" = \"x86_64\" ]; then
                 apt-get install -y code-server || apt-get install -y code || echo 'VS Code package not available directly in repo; code-server alternative supported.'
             else
-                echo 'VS Code not directly supported on architecture: '$arch
+                echo 'VS Code not directly supported on architecture: '\$arch
             fi
         " 2>/dev/null || true
     fi
 }
 
 check_antigravity() {
-    log "Checking Antigravity package status..."
-    log "Antigravity is not available in official Linux ARM64 repositories. Marked as OPTIONAL/UNSUPPORTED."
+    log "Checking Antigravity platform availability..."
+    log "Antigravity is NOT available as an official Linux/ARM64 build. Marked as UNSUPPORTED / NOT VERIFIED."
+}
+
+configure_shortcuts() {
+    log "Creating desktop application launchers..."
+    mkdir -p "${SCRIPT_DIR}/../desktop/config"
+    cat << 'SHORTCUTS' > "${SCRIPT_DIR}/../desktop/config/shortcuts.ini"
+[Desktop Launchers]
+Terminal=xfce4-terminal
+FileManager=thunar
+TextEditor=mousepad
+WebBrowser=firefox
+SHORTCUTS
 }
 
 install_all_apps() {
@@ -59,6 +71,7 @@ install_all_apps() {
     install_chromium
     install_vscode
     check_antigravity
+    configure_shortcuts
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
