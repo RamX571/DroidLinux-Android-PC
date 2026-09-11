@@ -3,6 +3,7 @@ set -Eeuo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+VERSION="0.1.0"
 
 COMMAND="${1:-help}"
 
@@ -34,8 +35,13 @@ case "$COMMAND" in
     uninstall)
         bash "${SCRIPT_DIR}/uninstall.sh"
         ;;
-    *)
+    version|--version|-v)
+        echo "DroidLinux-Android-PC"
+        echo "Version: ${VERSION}"
+        ;;
+    help|--help|-h)
         echo "DroidLinux Management CLI"
+        echo "Version: ${VERSION}"
         echo "Usage: droidlinux <command>"
         echo ""
         echo "Commands:"
@@ -48,5 +54,12 @@ case "$COMMAND" in
         echo "  diagnostics  Collect diagnostic information"
         echo "  benchmark    Run lightweight performance benchmarks"
         echo "  uninstall    Safely uninstall DroidLinux"
+        echo "  version      Show DroidLinux version"
+        echo "  help         Show this help message"
+        ;;
+    *)
+        echo "Unknown command: $COMMAND"
+        echo "Run 'droidlinux help' for usage instructions."
+        return 1 2>/dev/null || true
         ;;
 esac
