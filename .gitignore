@@ -1,0 +1,9 @@
+# DroidLinux Runtime State & Logs
+*.log
+install.log
+droidlinux.pid
+
+# OS & Temporary Files
+.DS_Store
+*.tmp
+/tmp/

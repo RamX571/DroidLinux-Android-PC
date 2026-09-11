@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+COMMAND="${1:-help}"
+
+case "$COMMAND" in
+    start)
+        bash "${SCRIPT_DIR}/start.sh"
+        ;;
+    stop)
+        bash "${SCRIPT_DIR}/stop.sh"
+        ;;
+    restart)
+        bash "${SCRIPT_DIR}/restart.sh"
+        ;;
+    status)
+        bash "${SCRIPT_DIR}/status.sh"
+        ;;
+    update)
+        bash "${SCRIPT_DIR}/update.sh"
+        ;;
+    repair)
+        bash "${SCRIPT_DIR}/repair.sh"
+        ;;
+    diagnostics)
+        bash "${ROOT_DIR}/tools/diagnostics.sh"
+        ;;
+    benchmark)
+        bash "${ROOT_DIR}/tools/benchmark.sh"
+        ;;
+    uninstall)
+        bash "${SCRIPT_DIR}/uninstall.sh"
+        ;;
+    *)
+        echo "DroidLinux Management CLI"
+        echo "Usage: droidlinux <command>"
+        echo ""
+        echo "Commands:"
+        echo "  start        Start the DroidLinux desktop session"
+        echo "  stop         Stop the running desktop session"
+        echo "  restart      Restart the desktop session"
+        echo "  status       Show system and session status"
+        echo "  update       Update DroidLinux scripts"
+        echo "  repair       Repair configuration or broken packages"
+        echo "  diagnostics  Collect diagnostic information"
+        echo "  benchmark    Run lightweight performance benchmarks"
+        echo "  uninstall    Safely uninstall DroidLinux"
+        ;;
+esac
